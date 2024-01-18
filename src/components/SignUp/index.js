@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import Input from "../Input";
 import { validate } from "./validate";
+import { notify } from "../toast";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const SignUp = () => {
   const [data, setData] = useState({
     name: "",
@@ -30,8 +34,12 @@ const SignUp = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!Object.keys(errors).length) {
+      notify("yes","seccess")
+
       console.log(data);
     } else {
+      notify("noooooooooooo","error")
+
       setTouched({
         name: true,
         email: true,
@@ -92,7 +100,10 @@ const SignUp = () => {
           error={errors.isAccepted}
         />
         <button type="submit">submit</button>
+        <ToastContainer />
+
       </form>
+
     </div>
   );
 };
